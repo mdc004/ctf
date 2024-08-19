@@ -1,19 +1,11 @@
 # Cose da guardare
-- nodejs
-- mongodb
 - gdb
-- come si fa un progetto:
-  - come si documents
-  - error handling
-
-### Lista quando hai finito sopra
 - wifi: 
 	- come funziona, principali cose dal libro
 	- come craccarlo
 	- aircrackng
-	- 
+	  
 - ram?
-- gdb
 - elkstack
 - docker
 - [Backgrounding and Foregrounding in Linux](#backgrounding-and-foregrounding-in-linux)
