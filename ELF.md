@@ -6,11 +6,13 @@ To execute a ELF file: `chmod +x nomefile`, more about `chmod` [here](#chmod)
 > Se non vanno mettere davanti al nome del file ./ e aggiungere il permesso di esecuzione 
 
 When you have a Binary challenge you have to understand how the program works, before using ghidra you can try this commands:
-- `strings`
+- `strings` or better `strings file | grep flag`
+
+If you don't find the flag with `strings` try to undestand how the binary work with these commands:
 - `file`
 - `ldd` - *permette di elencare le shared libraries richieste da un file binario*.
-- [ltrace](#)
-- [strace](#)
+- `ltrace` - dinamic analysis (display functions has been called)
+- `strace` - static analysis (trace delle syscalls eseguite da un binario)
 - `objdump` - *displays information about one or more object files* 
   - use the `-d` option to list the section of the ELF 
   - `-h` ti permette di elencare le sezioni di un ELF
@@ -18,6 +20,9 @@ When you have a Binary challenge you have to understand how the program works, b
   - `objcopy --dump-section .text=main_text main out_objcopy` - *This command extracts the .text section from main and saves it to out_objcopy* (provalo, tante volte la flag è nascosta in sezioni tipo commenti o text).
 - `readelf`, use the `-h` option
 - `checksec`
+
+
+
 
 > A **stripped file** is a file without symbolic information (and other information not required for execution)
 ### Heap Inspection Security Vulnerability
