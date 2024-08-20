@@ -12,7 +12,7 @@ If you don't find the flag with `strings` try to undestand how the binary work w
 - `file`
 - `ldd` - *permette di elencare le shared libraries richieste da un file binario*.
 - `ltrace` - dinamic analysis, display **functions** has been **called**. `-e` filter called functions (use one or more `grep`)
-- `strace` - static analysis (trace delle syscalls eseguite da un binario)
+- `strace` - static analysis (trace delle syscalls eseguite da un binario). `-f` syscall eseguite dai processi figli
 - `objdump` - *displays information about one or more object files* 
   - use the `-d` option to list the section of the ELF 
   - `-h` ti permette di elencare le sezioni di un ELF
@@ -21,15 +21,44 @@ If you don't find the flag with `strings` try to undestand how the binary work w
 - `readelf`, use the `-h` option
 - `checksec`
 
-
-
-
 > A **stripped file** is a file without symbolic information (and other information not required for execution)
-### Heap Inspection Security Vulnerability
+
+## GDB
+`gdb ./file`
+
+- `run` esegue il programma
+- `CTRL + C` mette in pausa, `continue` riprende
+- `info registers` stato registri CPU
+- `print`, abbreviabile con `p` stampa risultato espressioni, in particolare: `print/f expr`:
+  - `/f`  è il formato con il quale stampare il risultato dell'espressione:
+    - `x` per l'esadecimale
+    - `f` per i float
+    - `d` per i numeri interi con segno
+    - `u` per i numeri interi unsigned
+  - `expr` può essere un registro, come ad esempio `$rax`, ma può anche essere un espressione aritmetica come `$rax+0x100`
+- `x/nfu addr` per ispezionare la memoria, dove:
+  - `x` -> Examine
+  - `n` -> Numero intero che specifica quanti elementi stampare (opzionale, di default 1)
+  - `f` -> Formato con il quale stampare la memoria, per esempio: (opzionale, di default x):
+    - `s` per le stringhe
+    - `i` per il disassembly
+    - `x` per l'esadecimale
+    - `f` per i float
+    - `d` per i numeri interi con segno
+  - `u` -> La dimensione di ogni elemento da stampare, per esempio: (opzionale, di default w):
+    - `b` Bytes
+    - `h` Halfwords (2 bytes)
+    - `w` Words (4 bytes)
+    - `g` Giant words (8 bytes)
+  - `addr` può essere sia un indirizzo di memoria, come $0x5000000$, sia un registro che contiene un indirizzo, come `$rax`.
+    Insieme ad `addr` si possono specificare delle operazioni aritmetiche, ad esempio `$rax+8`
+
+> All'interno del codice sorgente potrebbero essere stati inseririti manualmente dei **brakpoint** per il debugger
+
+## Heap Inspection Security Vulnerability
 - [Heap Inspection Security Vulnerability | C Programming Tutorial](https://youtu.be/hHlE2BpxjKU) - by Portfolio Courses
 - [The Heap: How do use-after-free exploits work? - bin 0x16](https://youtu.be/ZHghwsTRyzQ) - by LiveOverflow
 
 Quando libero la memoria in realtà non vado a riazzerarla, bensì tolgo solo i vincoli che la bloccavano: 
 
 *prendendo ad esempio [C](#c), la funzione `free()` libera la memoria, tuttavia nel momento in cui io vado a riaccedere a quelle celle di memoria trovo ancora i dati che erano stati lasciati precedentemente*.
-
