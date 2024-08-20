@@ -11,7 +11,7 @@ When you have a Binary challenge you have to understand how the program works, b
 If you don't find the flag with `strings` try to undestand how the binary work with these commands:
 - `file`
 - `ldd` - *permette di elencare le shared libraries richieste da un file binario*.
-- `ltrace` - dinamic analysis (display functions has been called)
+- `ltrace` - dinamic analysis, display **functions** has been **called**. `-e` filter called functions
 - `strace` - static analysis (trace delle syscalls eseguite da un binario)
 - `objdump` - *displays information about one or more object files* 
   - use the `-d` option to list the section of the ELF 
