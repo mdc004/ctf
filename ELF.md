@@ -27,7 +27,9 @@ If you don't find the flag with `strings` try to undestand how the binary work w
 `gdb ./file`
 
 - `run` esegue il programma
+- `break` oppure `b` inserisce un **breakpoint** ad un determinato indirizzo o ad una funzione, *es: `b `*
 - `CTRL + C` mette in pausa, `continue` riprende
+- `disassemble function_name` permette di disassemblare il contenuto di una funzione mostrando gli offset delle varie istruzioni rispetto all'indirizzo della funzione.
 - `info registers` stato registri CPU
 - `print`, abbreviabile con `p` stampa risultato espressioni, in particolare: `print/f expr`:
   - `/f`  è il formato con il quale stampare il risultato dell'espressione:
