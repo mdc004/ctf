@@ -22,7 +22,7 @@ If you don't find the flag with `strings` try to undestand how the binary work w
 - `checksec`
 - [`gdb`](#GDB)
 
-In alternativa è possibile usare **pwntools**, c'è un file apposta.
+In alternativa è possibile usare [**pwntools**](./pwntools.md), c'è un file apposta.
 
 > A **stripped file** is a file without symbolic information (and other information not required for execution)
 
