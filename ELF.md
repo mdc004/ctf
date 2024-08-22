@@ -20,6 +20,9 @@ If you don't find the flag with `strings` try to undestand how the binary work w
   - `objcopy --dump-section .text=main_text main out_objcopy` - *This command extracts the .text section from main and saves it to out_objcopy* (provalo, tante volte la flag è nascosta in sezioni tipo commenti o text).
 - `readelf`, use the `-h` option
 - `checksec`
+- [`gdb`](#GDB)
+
+In alternativa è possibile usare **pwntools**, c'è un file apposta.
 
 > A **stripped file** is a file without symbolic information (and other information not required for execution)
 
@@ -30,7 +33,6 @@ If you don't find the flag with `strings` try to undestand how the binary work w
 - `break` oppure `b` inserisce un **breakpoint** ad un determinato indirizzo o ad una funzione, *es: `b `*
 - `CTRL + C` mette in pausa, `continue` riprende
 - `disassemble function_name` permette di disassemblare il contenuto di una funzione mostrando gli offset delle varie istruzioni rispetto all'indirizzo della funzione.
-- `set {type}address = value` cambia il contenuto della memoria, dove `type` indica il tipo della variabile all'indirizzo `address`. *Per esempio `set {int}0x650000 = 0x42`*
 - `info registers` stato registri CPU
 - `print`, abbreviabile con `p` stampa risultato espressioni, in particolare: `print/f expr`:
   - `/f`  è il formato con il quale stampare il risultato dell'espressione:
@@ -38,7 +40,8 @@ If you don't find the flag with `strings` try to undestand how the binary work w
     - `f` per i float
     - `d` per i numeri interi con segno
     - `u` per i numeri interi unsigned
-  - `expr` può essere un registro, come ad esempio `$rax`, ma può anche essere un espressione aritmetica come `$rax+0x100`
+  - `expr` può essere un registro, come ad esempio `$rax`, ma può anche essere un'espressione aritmetica come `$rax+0x100`
+- `set {type}address = value` cambia il contenuto della memoria, dove `type` indica il tipo della variabile all'indirizzo `address`. Per conoscere l'indirizzo di una variabile usare `p &var` *Per esempio `set {int}0x650000 = 0x42`*
 - `x/nfu addr` per ispezionare la memoria, dove:
   - `x` -> Examine
   - `n` -> Numero intero che specifica quanti elementi stampare (opzionale, di default 1)
