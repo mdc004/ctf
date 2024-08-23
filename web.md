@@ -6,7 +6,7 @@
 - **`.DS_Store`**: is a common file in some websites, I think only in Apache servers, it is connected with MAC and Storage
 - [`beautifulSoup`](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
-  **Gli attributi degli elementi si accedono tramite array associativi: *soup.img['src']***
+  **Gli attributi degli elementi si accedono tramite array associativi: `soup.img['src']`**
 
   ```python
   import requests as req
