@@ -4,7 +4,17 @@
 - Se il **check** è via **js** scarica tutta la pagina e la modifichi in locale come vuoi ( *se non riesci a modificarla live sul broser* )
 - **Se non trovi la risposta fai generare errori a php**
 - **`.DS_Store`**: is a common file in some websites, I think only in Apache servers, it is connected with MAC and Storage
-- [`beautifulSoup`](#BeautifulSoup)
+- [`beautifulSoup`](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+
+  ```python
+  import requests as req
+   from bs4 import BeautifulSoup
+   
+   page = req.get('http://captcha.challs.olicyber.it/')
+   
+   soup = BeautifulSoup(page.text, 'html.parser')
+  ```
+  
 - **Insecure direct object reference (IDOR) vulnerability** arises when attackers can access or modify objects by manipulating identifiers used in a web application's URLs or parameters. It occurs due to missing access control checks, which fail to verify whether a user should be allowed to access specific data. (`http://notes.challs.olicyber.it/account/account_number_that_you_want`)
 
 - **`.htaccess`**: is a common file in a lots of websites, I think only in Apache servers
