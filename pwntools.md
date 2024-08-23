@@ -73,7 +73,7 @@ r.close()
 ```
 
 *Esempio 2*
-```
+```python
 # Connessione al server
 HOST = "software-18.challs.olicyber.it"
 PORT = 13001
