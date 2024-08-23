@@ -8,11 +8,11 @@
 
   ```python
   import requests as req
-   from bs4 import BeautifulSoup
+  from bs4 import BeautifulSoup
    
-   page = req.get('http://captcha.challs.olicyber.it/')
+  page = req.get('http://captcha.challs.olicyber.it/')
    
-   soup = BeautifulSoup(page.text, 'html.parser')
+  soup = BeautifulSoup(page.text, 'html.parser')
   ```
   
 - **Insecure direct object reference (IDOR) vulnerability** arises when attackers can access or modify objects by manipulating identifiers used in a web application's URLs or parameters. It occurs due to missing access control checks, which fail to verify whether a user should be allowed to access specific data. (`http://notes.challs.olicyber.it/account/account_number_that_you_want`)
