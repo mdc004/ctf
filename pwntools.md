@@ -56,20 +56,56 @@ if __name__ == "__main__":
 
 *Esempio di codice*
 ```python
-    HOST = "software-17.challs.olicyber.it"
-    PORT = 13000
-    r = remote(HOST, PORT)
-    data = r.recvuntil(b"per iniziare ...")
-    r.sendline(b"v")
-    data = r.recvline()
+HOST = "software-17.challs.olicyber.it"
+PORT = 13000
+r = remote(HOST, PORT)
+data = r.recvuntil(b"per iniziare ...")
+r.sendline(b"v")
+data = r.recvline()
 
-    summ = sum(map(int, r.recvline()[1:-2].decode("utf-8").split(", ")))
-    data = r.recv(1024)
-    r.sendline(str(summ).encode())
-    data = r.recvline()
+summ = sum(map(int, r.recvline()[1:-2].decode("utf-8").split(", ")))
+data = r.recv(1024)
+r.sendline(str(summ).encode())
+data = r.recvline()
+print(data)
+
+r.close()
+```
+
+*Esempio 2*
+```
+# Connessione al server
+HOST = "software-18.challs.olicyber.it"
+PORT = 13001
+r = remote(HOST, PORT)
+
+# Inizia la comunicazione
+data = r.recvuntil(b"per iniziare ...")
+r.sendline(b"v")
+
+for i in range(0, 100):
+    data = r.recvline().decode("utf-8").split(" ")
     print(data)
+    print(r.recvline())
+    #print(r.recvuntil(b"Risultato : "))
 
-    r.close()
+    # Estrai le informazioni necessarie
+    num = int(data[5], 16)
+    how = data[8]
+
+    if how == '32-bit\n':
+        # Converte il valore in byte string e poi interpreta come 32-bit
+        payload = p32(num, endian='little')
+    else:  # 64-bit
+        payload = p64(num, endian='little')
+    
+    #r.sendline(payload)
+    r.sendafter(b": ", payload)     
+
+print(r.recv(1024))
+
+# Chiudi la connessione
+r.close()
 ```
 
 ## [Packing](https://docs.pwntools.com/en/stable/util/packing.html)
