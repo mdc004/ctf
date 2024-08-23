@@ -6,6 +6,8 @@ Eseguire i classici comandi:
 - [ImageMagick](#imaginemagick) ***Run the command using***: `display`
 -  [aperisolve](https://www.aperisolve.com/) *è un insieme di tutti i possibili metodi, fa un'analisi generale*
 
+> Ricordati di modificare luminosità, contrasto, colori...
+
 ### Steganografia
 Molte volte si usa nascondere la flag all'interno dell'immagine, utilizzando la tecnica della [[steganografia]].
 
