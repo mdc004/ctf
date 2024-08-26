@@ -59,6 +59,11 @@ Di seguito alcuni comandi e strumenti utilizzati per estrarre i file conenuti al
 Se pensi che sia necessario modificare l'header dell'immagine, è necessario capire il tipo di immagine e poi modificare l'header copiandolo da un'immagine in quel formato, per farlo è possibile utilizzare un software quale [HxD]()
 
 ## OCR
+
+`sudo apt-get update`
+
+`sudo apt-get install tesseract-ocr`
+
 `pip install pytesseract pillow`
 
 ```python
