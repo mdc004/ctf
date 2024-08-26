@@ -57,3 +57,25 @@ Di seguito alcuni comandi e strumenti utilizzati per estrarre i file conenuti al
 
 ### Corruzione header 
 Se pensi che sia necessario modificare l'header dell'immagine, è necessario capire il tipo di immagine e poi modificare l'header copiandolo da un'immagine in quel formato, per farlo è possibile utilizzare un software quale [HxD]()
+
+## OCR
+`pip install pytesseract pillow`
+
+```python
+import pytesseract
+from PIL import Image
+import requests
+from io import BytesIO
+
+# Image URL
+image_url = 'http://captcha.challs.olicyber.it/your_image_path_here'
+
+# Fetching the image from the URL
+response = requests.get(image_url)
+img = Image.open(BytesIO(response.content))
+
+# Use Tesseract to extract text
+text = pytesseract.image_to_string(img)
+
+print(text)
+```
