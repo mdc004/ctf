@@ -17,6 +17,7 @@ Bitwise significa operazioni a livello di bit
 - `int.to_bytes(length=1, byteorder='big', *, signed=False)` Return an array of bytes representing an integer.
 
   Il campo `length` è sempre meglio metterlo ad un numero alto tipo $256$, tanto i dati che ci interessano sono rappresentati alla fine.
+- `ord(char)` tipicamente usato per il cifrario di cesare o in generale quando devi traslare le cifre
 - [PyCryptodome](https://pycryptodome.readthedocs.io/en/latest/index.html) *(library)*
 
 ## RSA
