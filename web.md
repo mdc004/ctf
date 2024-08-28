@@ -7,6 +7,7 @@
 - python [`requests`](https://requests.readthedocs.io/en/latest/user/quickstart/) module
   - `page = requests.get('url', params={'getParam': 'val'})`
   - `page = requests.get(url, headers={'user-agent': 'my-app/0.0.1'})`
+  - `page = requests.post('http://web-08.challs.olicyber.it/login', data={"username": "admin","password": "admin"})`
 - [`beautifulSoup`](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
   **Gli attributi degli elementi si accedono tramite array associativi: `soup.img['src']`**
