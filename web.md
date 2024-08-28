@@ -5,8 +5,8 @@
 - **Se non trovi la risposta fai generare errori a php**, tipicamente inviando array vuoti: `input=[]` o trasformando in array vuoti: `input[]=`
 - **`.DS_Store`**: is a common file in some websites, I think only in Apache servers, it is connected with MAC and Storage
 - python [`requests`](https://requests.readthedocs.io/en/latest/user/quickstart/) module
- - `page = requests.get('url', params={'getParam': 'val'})`
- - `page = requests.get(url, headers={'user-agent': 'my-app/0.0.1'})`
+  - `page = requests.get('url', params={'getParam': 'val'})`
+  - `page = requests.get(url, headers={'user-agent': 'my-app/0.0.1'})`
 - [`beautifulSoup`](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
   **Gli attributi degli elementi si accedono tramite array associativi: `soup.img['src']`**
