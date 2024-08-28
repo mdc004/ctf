@@ -4,6 +4,7 @@
 - Se il **check** è via **js** scarica tutta la pagina e la modifichi in locale come vuoi ( *se non riesci a modificarla live sul broser* )
 - **Se non trovi la risposta fai generare errori a php**, tipicamente inviando array vuoti: `input=[]` o trasformando in array vuoti: `input[]=`
 - **`.DS_Store`**: is a common file in some websites, I think only in Apache servers, it is connected with MAC and Storage
+- python `requests` module: `page = requests.get('url', params={'getParam': 'val'})`
 - [`beautifulSoup`](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
   **Gli attributi degli elementi si accedono tramite array associativi: `soup.img['src']`**
