@@ -76,7 +76,7 @@ Modificare ed effettuare richieste particolari:
 - 400 - 499 (Client error)
 - 500 - 599 (Server error)
 
-#### HEADER
+#### verbose
 - GET: richiede al server una risorsa, possono essere specificati alcuni parametri attraverso la coppia: chiave=valore&chiave1=valore1
 - HEAD: richiede solo l'header, tipicamente utilizzato in fase di testing
 - POST: invia informazioni all'indirizzo indicato, esse sono inserite nel body della richiesta
@@ -84,16 +84,6 @@ Modificare ed effettuare richieste particolari:
 - DELETE: cancella una risorsa
 - OPTIONS: richiede al server l'elenco dei metodi concessi
 - TRACE: traccia una richiesta
-
-### URN URI URL
-L'Uniform Resource Identifier, URI, è una stringa che identifica univocamente una risorsa; l'Uniform Resource Locator è una specifica dell'URI che comprende, oltre al percorso che identifica la risorsa, viene aggiunto il protocollo usato per accendervi, comunemente il termine URL viene usato impropriamente per riferirsi ad ogni tipo di URI.
-
-In addizione a URI e URL esiste anche l'Uniform Resource Name, URN, il quale è anch'esso un sottoinsieme dell'URI, ma a differenza dell'URL indica solo il percorso della risorsa.
-
-Le risorse vengono identificate con un URI, se esso indica anche il protocollo con cui accedere alla risorsa è un URL, altrimenti è un URN.
-
-- **URL** `https://www.tiadeca.com/blog-page.php`
-- **URN** `tiadeca.com/blog-page.php`
 
 ### Reverse Shell
 Aprire una reverse shell significa poter eseguire comandi sulla macchina vittima e avere quindi un possibile controllo equivalente al 100%, il tutto dipende dai privilegi che si riesce ad ottenere attraverso le tattiche di [[Post-exploitation]] o in base alla o alle vulnerabilità sfruttate, individuate grazie ai metoditi di [[Reconnaissance]], sia [[Active Reconnaissance]] che [[Passive Reconnaissance]].
@@ -127,6 +117,21 @@ Aprire una reverse shell significa poter eseguire comandi sulla macchina vittima
 > As you can see you will open a local server on your computer on port 1234, from here, using ncat you will interact with the target host shell
 
 > Per mettere online il server locale ci si può appoggiare ad ngrok
+
+### token CSRF
+Il token CSRF è un sistema impiegato per impedire l'esecuzione di attacchi di tipo Cross-Site Request Forgery. L'attacco consisterebbe nell'ingannare un utente di un servizio web a cliccare su un link o sul tasto di invio di un form inclusi in un'email o su un sito controllato dall'attaccante, che abbiano come target una risorsa "pericolosa" del servizio bersaglio (p.e. una risorsa la cui richiesta rappresenti un comando di cancellazione dell'account). Il meccanismo del cookie di sessione, ottenibile solo con username e password sconosciuti all'attaccante, impedice a quest'ultimo di eseguire personalmente l'operazione "pericolosa" spacciandosi per l'utente, ma se l'utente viene indotto con l'inganno a cliccare il link malevolo su una macchina su cui abbia precedentemente eseguito l'accesso al servizio bersaglio, il cookie contenente il token di sessione verrà allegato automaticamente alla richiesta effettuata, validandola, senza che l'attaccante abbia bisogno di rubarlo o di riprodurne uno contraffatto.
+
+Il token CSRF impedisce questo tipo di attacco perché non viene inviato automaticamente dal browser come avviene per i normali cookie. Esso viene comunque memorizzato sulla macchina client in uno storage accessibile solo alle risorse associate al relativo servizio (e quindi fuori dal controllo dell'attaccante), ma deve essere esplicitamente allegato alle richieste HTTP sotto forma, ad esempio, di parametro GET, o all'interno al corpo di una richiesta POST, quando queste vengono eseguire. In questo modo è impossibile portare l'utente a generare una richiesta pericolosa con un semplice click, perché per generare un link pericoloso l'attaccante sarebbe costretto a conoscere il token. Per complicare ulteriormente le cose, i token CSRF sono tipicamente usa e getta, e ad ogni operazione completata con successo il client ne riceve uno nuovo generato casualmente. Il nuovo token viene solitamente aggiunto al corpo della risorsa restituita.
+
+### URN URI URL
+L'Uniform Resource Identifier, URI, è una stringa che identifica univocamente una risorsa; l'Uniform Resource Locator è una specifica dell'URI che comprende, oltre al percorso che identifica la risorsa, viene aggiunto il protocollo usato per accendervi, comunemente il termine URL viene usato impropriamente per riferirsi ad ogni tipo di URI.
+
+In addizione a URI e URL esiste anche l'Uniform Resource Name, URN, il quale è anch'esso un sottoinsieme dell'URI, ma a differenza dell'URL indica solo il percorso della risorsa.
+
+Le risorse vengono identificate con un URI, se esso indica anche il protocollo con cui accedere alla risorsa è un URL, altrimenti è un URN.
+
+- **URL** `https://www.tiadeca.com/blog-page.php`
+- **URN** `tiadeca.com/blog-page.php`
 
 ## SQL
 Query exercises [here](https://www.sql-practice.com/)
