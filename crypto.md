@@ -24,16 +24,100 @@ Bitwise significa operazioni a livello di bit
     ```
     Se non va applicare all'input: `bytes.fromhex(a)`
   - Sequenza non può, però essere utilizzata per più di una volta, difatti una volta esaurita sarà necessario generarne un'altra, pena attacchi di tipo [crib-drag](#crib-drag).
-- [PyCryptodome](https://pycryptodome.readthedocs.io/en/latest/index.html), [Documento Introduttivo](https://training.olicyber.it/api/file/13563f96-8ffa-4a10-a60b-b2d1aa6f53a9/pycryptodome_basics.pdf)
 - `b64decode()`
-  
-  ```Python
+- ```Python
   from base64 import b64decode
   print(b64decode('aGVubG8gOik='))
   ```
 - `int.to_bytes(length=1, byteorder='big', *, signed=False)` Return an array of bytes representing an integer.
 
   Il campo `length` è sempre meglio metterlo ad un numero alto tipo $256$, tanto i dati che ci interessano sono rappresentati alla fine.
+- [PyCryptodome](https://pycryptodome.readthedocs.io/en/latest/index.html)
+  [Documento Introduttivo](https://training.olicyber.it/api/file/13563f96-8ffa-4a10-a60b-b2d1aa6f53a9/pycryptodome_basics.pdf)
+  ```Python
+  from Crypto.Cipher import DES
+  from Crypto.Util.Padding import pad
+  from Crypto.Random import get_random_bytes
+  
+  '''
+  Cipher = DES
+  Mode of operation = CBC
+  key.hex() = '073b15e07531c240'
+  plaintext = 'La lunghezza di questa frase non è divisibile per 8'
+  Padding scheme = x923
+  '''
+  
+  key = bytes.fromhex('073b15e07531c240')
+  
+  iv = get_random_bytes(8)
+  
+  cipher = DES.new(key, DES.MODE_CBC, iv)
+  
+  plaintext = 'La lunghezza di questa frase non è divisibile per 8'.encode('utf-8')
+  
+  padded_text = pad(plaintext, DES.block_size, style='x923')
+  
+  ciphertext = cipher.encrypt(padded_text)
+  
+  final_ciphertext = ciphertext
+  
+  print(f"IV (esadecimale): {iv.hex()}")
+  print(final_ciphertext.hex())
+  ```
+  ```Python
+  from Crypto.Cipher import AES
+  from Crypto.Util.Padding import pad
+  from Crypto.Random import get_random_bytes
+  
+  '''
+  Cipher = AES256
+  Mode of operation = CFB
+  plaintext = 'Mi chiedo cosa significhi il numero nel nome di questo algoritmo.'
+  Padding scheme = pkcs7 (block size = 16)
+  Segment size = 24
+  '''
+  
+  key = get_random_bytes(32)
+
+  iv = get_random_bytes(16)
+
+  segment_size = 24
+
+  cipher = AES.new(key, AES.MODE_CFB, iv, segment_size=segment_size)
+
+  plaintext = 'Mi chiedo cosa significhi il numero nel nome di questo algoritmo.'.encode('utf-8')
+
+  padded_text = pad(plaintext, AES.block_size, style='pkcs7')
+
+  ciphertext = cipher.encrypt(padded_text)
+
+  print(f"Chiave (esadecimale): {key.hex()}")
+  print(f"IV (esadecimale): {iv.hex()}")
+  print(f"Testo cifrato (esadecimale): {ciphertext.hex()}")
+  ```
+  ```Python
+  from Crypto.Cipher import ChaCha20
+  
+  '''
+  Cipher = ChaCha20
+  key.hex() = 'fc47efc894be23567bc1937c3bf25841822560a2fabfb33c1fce679f8167c080'
+  ciphertext.hex() = '1c4cde7013a806a3c25129d8b3be3d7f441c3396c77abdeb4268bc04'
+  Nonce = cipher.nonce.hex() = '08af973d24bab25a'
+  '''
+  
+  key = bytes.fromhex('fc47efc894be23567bc1937c3bf25841822560a2fabfb33c1fce679f8167c080')
+  nonce = bytes.fromhex('08af973d24bab25a')
+  ciphertext = bytes.fromhex('1c4cde7013a806a3c25129d8b3be3d7f441c3396c77abdeb4268bc04')
+  
+  cipher = ChaCha20.new(key=key, nonce=nonce)
+  
+  plaintext = cipher.decrypt(ciphertext)
+  
+  plaintext_ascii = plaintext.decode('ascii')
+  
+  print(plaintext_ascii)
+  ```
+
   
 ## RSA
 #### Funzionamento:
