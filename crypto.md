@@ -9,6 +9,7 @@ Bitwise significa operazioni a livello di bit
 
 - Cifrario di cesare: comando `caesar`, scaricabile con `sudo apt install bsdgames`
 - `ord(char)` tipicamente usato per il cifrario di cesare o in generale quando devi traslare le cifre
+- moduli ecc. guardare taccuino mate del discreto
 - [RSA](#RSA):
   - RsaCtfTool
   - Rsa Decrypt
