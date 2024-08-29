@@ -8,8 +8,23 @@ Il principale strumento da utilizzare in questo tipo di challenge è Python!!!!!
 Bitwise significa operazioni a livello di bit
 
 - Cifrario di cesare: comando `caesar`, scaricabile con `sudo apt install bsdgames`
-
-### Funzioni python utili
+- `ord(char)` tipicamente usato per il cifrario di cesare o in generale quando devi traslare le cifre
+- [RSA](#RSA):
+  - RsaCtfTool
+  - Rsa Decrypt
+- xor *risultato sarà uguale a **1** se i due numeri non saranno uguali*. Le sue proprietà sono quella commutativa e date due variabili binarie *x* e *y* : `x ⊕ y ⊕ y = x`.
+  --> One Time Pad (OTP) 
+  - [Crack OTP with MTP (*python module*)](https://github.com/CameronLonsdale/MTP) (*su kali non sembra andare, parrot ok*)
+  - [`xortool`](https://github.com/hellman/xortool)
+  - [CyberChef](https://cyberchef.org/)
+  - Python
+    ```Python
+    def xor(a, b):
+    return bytes([x^y for x,y in zip(a,b)])
+    ```
+    Se non va applicare all'input: `bytes.fromhex(a)`
+  - Sequenza non può, però essere utilizzata per più di una volta, difatti una volta esaurita sarà necessario generarne un'altra, pena attacchi di tipo [crib-drag](#crib-drag).
+- [PyCryptodome](https://pycryptodome.readthedocs.io/en/latest/index.html), [Documento Introduttivo](https://training.olicyber.it/api/file/13563f96-8ffa-4a10-a60b-b2d1aa6f53a9/pycryptodome_basics.pdf)
 - `b64decode()`
   
   ```Python
@@ -19,9 +34,7 @@ Bitwise significa operazioni a livello di bit
 - `int.to_bytes(length=1, byteorder='big', *, signed=False)` Return an array of bytes representing an integer.
 
   Il campo `length` è sempre meglio metterlo ad un numero alto tipo $256$, tanto i dati che ci interessano sono rappresentati alla fine.
-- `ord(char)` tipicamente usato per il cifrario di cesare o in generale quando devi traslare le cifre
-- [PyCryptodome](https://pycryptodome.readthedocs.io/en/latest/index.html) *(library)*
-
+  
 ## RSA
 #### Funzionamento:
 - Creazione della chiave
@@ -68,37 +81,9 @@ Bitwise significa operazioni a livello di bit
 > - $ϕ(n)$ è la funzione di Eulero di $n$
 > 
 
-#### Craccare RSA
-Ci sono dei tool per craccarlo:
-- RsaCtfTool
-- [Rsa Decrypt](#RsaCtfTool)
-
-## `xor()`
-L'operazione di **OR ESCLUSIVO** detta anche **XOR** serve a trovare due numeri diversi, ovvero il risultato sarà uguale a **1** se i due numeri non saranno uguali.
-
-Le sue proprietà sono quella commutativa e date due variabili binarie *x* e *y* : `x ⊕ y ⊕ y = x`.
-
-```Python
-def xor(a, b):
-  return bytes([x^y for x,y in zip(a,b)])
-```
-
-Se non va applicare all'input: `bytes.fromhex(a)`
-
-Alternativamente c'è la funzione `xor` su [CyberChef](https://cyberchef.org/)
-
-### **One-tipe-pad**
-Questo tipo di cifrario venne inventato da Mauborgne e Vernam nel 1917, esso venne utilizzato per cifrare le comunicazioni avvenute tramite il *telefono rosso*; è un cifrario simmetrico e si basa sull'operazione di **XOR**.
-
+## *crib drag*
 La lunghezza della chiave *k* deve essere uguale alla lunghezza del messaggio *m*, nel momento in cui si va ad effettuare la cifratura il risultato dell'operazione *c*, sarà della stessa lunghezza di *k* e *m*.
 
-Il problema del cifrario sorge nel momento in cui *mittente* e *destinatario* devono scambiarsi la chiave, per questo motivio è necessario che essi si accordino preventivamente su una chiave da *consumare* man mano che la comunicazione procede. 
-
-La suddetta sequenza non può, però essere utilizzata per più di una volta, difatti una volta esaurita sarà necessario generarne un'altra, pena attacchi di tipo [crib-drag](#crib-drag).
-
-#### [Crack OTP with MTP (*python module*)](https://github.com/CameronLonsdale/MTP) (*su kali non sembra andare, parrot ok*)
-
-### *crib drag*
 Nel caso del riutilizzo della chiave si introducono debolezze: conoscendo qualcosa di uno dei messaggi, è possibile decifrarli senza avere informazioni sulla chiave.
 
 ```Python
