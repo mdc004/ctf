@@ -7,6 +7,8 @@ Il principale strumento da utilizzare in questo tipo di challenge è Python!!!!!
 
 Bitwise significa operazioni a livello di bit
 
+- Cifrario di cesare: comando `caesar`, scaricabile con `sudo apt install bsdgames`
+
 ### Funzioni python utili
 - `b64decode()`
   
