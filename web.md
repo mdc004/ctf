@@ -3,6 +3,7 @@
 - Se non trovi la risposta e hai delle richieste HTTP prova a **cambiare** il *metodo*
 - Se il **check** è via **js** scarica tutta la pagina e la modifichi in locale come vuoi ( *se non riesci a modificarla live sul broser* )
 - **Se non trovi la risposta fai generare errori a php**, tipicamente inviando array vuoti: `input=[]` o trasformando in array vuoti: `input[]=`
+- Controlla se il confronto è fatto con `==` o `===` in tal caso prova a traformare in un altro tipo ad esempio un array...
 - **`.DS_Store`**: is a common file in some websites, I think only in Apache servers, it is connected with MAC and Storage
 - python [`requests`](https://requests.readthedocs.io/en/latest/user/quickstart/) module
   - `page = requests.get('url', params={'getParam': 'val'})`
