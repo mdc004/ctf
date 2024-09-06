@@ -12,6 +12,14 @@ Bitwise significa operazioni a livello di bit
 - moduli ecc. guardare taccuino mate del discreto
 - [RSA](#RSA):
   - RsaCtfTool
+    ```bash
+    git clone https://github.com/RsaCtfTool/RsaCtfTool
+    cd RsaCtfTool
+    pip install -r requirements.txt
+    ```
+
+    `python RsaCtfTool.py --n <n_value> --e <e_value> --ct <ct_value>`
+
   - Rsa Decrypt
 - xor *risultato sarà uguale a **1** se i due numeri non saranno uguali*. Le sue proprietà sono quella commutativa e date due variabili binarie *x* e *y* : `x ⊕ y ⊕ y = x`.
   --> One Time Pad (OTP) 
