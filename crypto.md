@@ -11,7 +11,7 @@ Bitwise significa operazioni a livello di bit
 - `ord(char)` tipicamente usato per il cifrario di cesare o in generale quando devi traslare le cifre
 - moduli ecc. guardare taccuino mate del discreto
 - [RSA](#RSA):
-  - RsaCtfTool
+  - [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool)
     ```bash
     git clone https://github.com/RsaCtfTool/RsaCtfTool
     cd RsaCtfTool
