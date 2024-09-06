@@ -18,7 +18,7 @@ Bitwise significa operazioni a livello di bit
     pip install -r requirements.txt
     ```
 
-    `python RsaCtfTool.py --n <n_value> --e <e_value> --ct <ct_value>`
+    `python RsaCtfTool.py -n <n_value> -e <e_value> --decrypt <cipher_text>`
 
   - Rsa Decrypt
 - xor *risultato sarà uguale a **1** se i due numeri non saranno uguali*. Le sue proprietà sono quella commutativa e date due variabili binarie *x* e *y* : `x ⊕ y ⊕ y = x`.
