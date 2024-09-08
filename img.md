@@ -5,6 +5,20 @@ Eseguire i classici comandi:
 - head
 - [ImageMagick](#imaginemagick) ***Run the command using***: `display`
 -  [aperisolve](https://www.aperisolve.com/) *è un insieme di tutti i possibili metodi, fa un'analisi generale*
+- QR codes and bar codes:
+    - `pyzbar` python library
+      `pip install pyzbar`
+      ```python
+      from PIL import Image
+      from pyzbar.pyzbar import decode, ZBarSymbol
+    
+      img = Image.open('flag.png')
+    
+      decoded_list = decode(img)
+    
+      for el in decoded_list:
+          print(el)
+      ```
 
 > Ricordati di modificare luminosità, contrasto, colori...
 
