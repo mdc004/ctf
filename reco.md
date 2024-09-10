@@ -61,7 +61,6 @@ Per catturare il traffico sul bus *USB* su *Windows* è necessario appoggiarsi a
 - nessus
 - Spyse
 - OpenVAS
-- [rustscan](#rustscan)
 - [smbclient](#smbclient)
 
 ###### `sudo apt install macchanger`
