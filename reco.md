@@ -49,7 +49,9 @@ Per catturare il traffico sul bus *USB* su *Windows* è necessario appoggiarsi a
 ### Usefull active reconnaissance
 - [[Gobuster]]
 - [[Nikto]]
-- [nmap](#nmap)
+- Ports Scanning:
+  - nmap
+  - rustscan
 - traceroute
 - ping
 - netcat
