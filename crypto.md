@@ -34,11 +34,13 @@ Bitwise significa operazioni a livello di bit
     ```
     Se non va applicare all'input: `bytes.fromhex(a)`
   - Sequenza non può, però essere utilizzata per più di una volta, difatti una volta esaurita sarà necessario generarne un'altra, pena attacchi di tipo [crib-drag](#crib-drag).
-- `b64decode()`
-- ```Python
-  from base64 import b64decode
-  print(b64decode('aGVubG8gOik='))
-  ```
+- `b64decode`
+  - comando shell: `cat flag_file_encoded | base64 --decode`
+  - libreria di python:
+    ```Python
+    from base64 import b64decode
+    print(b64decode('aGVubG8gOik='))
+    ```
 - `int.to_bytes(length=1, byteorder='big', *, signed=False)` Return an array of bytes representing an integer.
 
   Il campo `length` è sempre meglio metterlo ad un numero alto tipo $256$, tanto i dati che ci interessano sono rappresentati alla fine.
