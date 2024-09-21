@@ -34,25 +34,26 @@
 - **Insecure direct object reference (IDOR) vulnerability** arises when attackers can access or modify objects by manipulating identifiers used in a web application's URLs or parameters. It occurs due to missing access control checks, which fail to verify whether a user should be allowed to access specific data. (`http://notes.challs.olicyber.it/account/account_number_that_you_want`)
 
 - **`.htaccess`**: is a common file in a lots of websites, I think only in Apache servers
+- **File upload possibile**:
 
-- **[Null Byte Injection](https://youtu.be/jBtzFGwHvxE)** (*upload dei file*): a technique for sending data that would be filtered otherwise. It relies on injecting the null byte characters (%00, \x00) in the supplied data. Its role is to terminate a string.
-   
-   Se non funziona ci sono dei video:
-  - [Web Application Hacking - File Upload Attacks Explained](https://youtu.be/YAFVGQ-lBoM)
-  - [How To Bypass Website File Upload Restrictions](https://youtu.be/xZd1JWmLGLk)
-  - [File Upload Vulnerabilities & Filter Bypass](https://youtu.be/ZWG1nNdUnBc)
-
-  Una volta caricato il file che vuoi puoi provare una [*reverse-shell*](#reverse-shell)
-
+  Try to upload the file (with the extensions) that you want:
+  - `yoyo.png.php`
+  - **Magic Bytes**: search the [specific magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures) for the file requests, convert and **save** them in a file with [CyberChef](https://cyberchef.org/) (*from hex*). *Remember to save them in a file creating and saving a new file with cyberchef option*
+  - **[Null Byte Injection](https://youtu.be/jBtzFGwHvxE)**: a technique for sending data that would be filtered otherwise. It relies on injecting the null byte characters (`%00`, `\x00`) in the supplied data. Its role is to terminate a string*
+  
+  Una volta caricato il file che vuoi puoi provare una [*reverse-shell*](#reverse-shell) or a simple *single command executer* (a small php cmd payload): ```<?=`$_GET[0]`?>```, in order to use it: `www.pippo.it/yo.php?0=command`
+  
   ###### Example 1
   1. An attacker wants to retrieve the file `/etc/passwd` but an extension `.php` is appended automatically such as `/etc/passwd.php`.
   2. The attacker uses the null byte to terminate the string and throw away the `.php` extension: `/etc/passwd%00`
    
-    ###### Example 2
-     1. An attacker wants to upload a `malicious.php`, but the only extension allowed is `.pdf`.
-     2. The attacker constructs the file name such as `malicious.php%00.pdf` and uploads the file.
-     3. The application reads the `.pdf` extension, validate the upload, and later throws the end of the string due to the null byte.
-     4. The file `malicious.php` is then put in the server.
+  ###### Example 2
+   1. An attacker wants to upload a `malicious.php`, but the only extension allowed is `.pdf`.
+   2. The attacker constructs the file name such as `malicious.php%00.pdf` and uploads the file.
+   3. The application reads the `.pdf` extension, validate the upload, and later throws the end of the string due to the null byte.
+   4. The file `malicious.php` is then put in the server.
+
+  ###### [Example 3](https://brandon-t-elliott.github.io/trickster)
 
 - **Redirect Links**
 Add `+` at the end of the URL to see the site where the redirect links will bring you: `https://tinyurl.com/bw7t8p4u+`
