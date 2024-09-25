@@ -1,3 +1,5 @@
+To open an image: `xdg-open file`
+
 Eseguire i classici comandi:
 - files
 - strings
