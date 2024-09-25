@@ -30,7 +30,7 @@
    
   soup = BeautifulSoup(page.text, 'html.parser')
   ```
-  
+- **Change directory**: if there is a filter for `../` try `.../` or something similar
 - **Insecure direct object reference (IDOR) vulnerability** arises when attackers can access or modify objects by manipulating identifiers used in a web application's URLs or parameters. It occurs due to missing access control checks, which fail to verify whether a user should be allowed to access specific data. (`http://notes.challs.olicyber.it/account/account_number_that_you_want`)
 
 - **`.htaccess`**: is a common file in a lots of websites, I think only in Apache servers
@@ -40,7 +40,7 @@
   - `yoyo.png.php`
   - **Magic Bytes**: search the [specific magic bytes](https://en.wikipedia.org/wiki/List_of_file_signatures) for the file requests, convert and **save** them in a file with [CyberChef](https://cyberchef.org/) (*from hex*). *Remember to save them in a file creating and saving a new file with cyberchef option*
   - **[Null Byte Injection](https://youtu.be/jBtzFGwHvxE)**: a technique for sending data that would be filtered otherwise. It relies on injecting the null byte characters (`%00`, `\x00`) in the supplied data. Its role is to terminate a string*
-  
+
   Una volta caricato il file che vuoi puoi provare una [*reverse-shell*](#reverse-shell) or a simple *single command executer* (a small php cmd payload): ```<?=`$_GET[0]`?>```, in order to use it: `www.pippo.it/yo.php?0=command` for example: *http://atlas.picoctf.net:57784/uploads/yoyo.png.php?0=cat ../MFRDAZLDMUYDG.txt*. You can use spaces, dot...
   
   ###### Example 1
