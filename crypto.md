@@ -129,8 +129,10 @@ Bitwise significa operazioni a livello di bit
   
   print(plaintext_ascii)
   ```
-
-  
+## Euclid's Algorithm
+```python
+def gcd(a,b):
+```
 ## RSA
 #### Funzionamento:
 - Creazione della chiave
