@@ -6,7 +6,7 @@
   ```python                                                                                  
   import zipfile
   import os
-  import zlib  # Aggiunto per gestire gli errori di decompressione
+  import zlib
   
   def unzip(i):
       with open('/usr/share/wordlists/rockyou.txt', 'r', encoding='utf-8') as wordlist:
@@ -16,8 +16,7 @@
                   with zipfile.ZipFile(f'{i}.zip', 'r') as zip_ref:
                       zip_ref.setpassword(password.encode('utf-8'))
                       zip_ref.extractall('./')
-  
-                      # Verifica se il file è stato estratto
+ 
                       if os.path.isfile(f'{i}.zip'):  # Assicurati di specificare il nome corretto
                           print(f"File '{i}.zip' estratto con la password: {password}")
                           return
@@ -29,7 +28,6 @@
                   print(f"Errore di decompressione con {i}.zip: {e}")
                   continue
   
-  # Correggi il range per iterare da 100 a 1
   for i in range(100, 0, -1):
       unzip(i)
   ```
