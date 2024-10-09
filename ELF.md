@@ -26,6 +26,21 @@ In alternativa è possibile usare [**pwntools**](./pwntools.md).
 
 > A **stripped file** is a file without symbolic information (and other information not required for execution)
 
+## GCC
+This is a quick guide to the main options of `gcc`
+
+Preprocessor > Compiler > *Assembler* > Linker
+
+*Assembler phase is not a main phase*
+
+- `-o` option change output filename, by default: `a.out`
+- `-Wall` option enabling all the commonly used warning messages
+- `-ansi` the compiler will enforce the rules and features defined by the ANSI standard
+- `-std=cX (X=89,90,95,11,18)` specifies the C language standard to use for compiling your code add `-pedantic` to enforce strict adherence to the specified C language standard 
+- `-E` option in GCC tells the compiler to preprocess the source code and output the result to standard output `gcc -E prog1.c > prog1.i` or `gcc -E prog1.c -o prog1.i`
+- `-S` option in GCC tells the compiler to compile the source code into assembly language (x86-64 assembly language) `gcc -S prog1.c -o prog1.s`
+- `-o` option in GCC tells the compiler to compile the source code into an object file, without linking it into an executable `gcc -c prog1.c -o prog1.o`
+
 ## GDB
 `gdb ./file`
 
