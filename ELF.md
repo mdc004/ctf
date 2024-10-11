@@ -57,7 +57,7 @@ Preprocessor > Compiler > *Assembler* > Linker
     - `u` per i numeri interi unsigned
   - `expr` può essere un registro, come ad esempio `$rax`, ma può anche essere un'espressione aritmetica come `$rax+0x100`
 - `set {type}address = value` cambia il contenuto della memoria, dove `type` indica il tipo della variabile all'indirizzo `address`. Per conoscere l'indirizzo di una variabile usare `p &var` *Per esempio `set {int}0x650000 = 0x42`*
-- `x/nfu addr` per ispezionare la memoria, dove:
+- `x/nfu addr` per ispezionare la memoria (ex. `x/x 0x0000b7c2`, `x/11i 0x7c00`), dove:
   - `x` -> Examine
   - `n` -> Numero intero che specifica quanti elementi stampare (opzionale, di default 1)
   - `f` -> Formato con il quale stampare la memoria, per esempio: (opzionale, di default x):
