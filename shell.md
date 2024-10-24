@@ -1,7 +1,28 @@
 - **symlink**: they are **pointer** to another file or directory, look like in C, to create s symlink: `ln -s /path/to/original/file /path/to/symlink` *it means that the first file is the original file and the second is the pointer file*
+- **`du`** *disk usage*
+- [**`find`**](https://www.grymoire.com/Unix/Find.html#uh-0) `[path] [options] [expression]`
+  - `-name`
+  - `-size` *+1M   # files larger than 1 MB, -100k # files smaller than 100 KB*
+  - `-mtime` *-7   # files modified in the last 7 days* or `-atime` *for access time*
+  - `-perm` */111 has exe permession*
+  - `-print` *display results* or `-ls` *to list the results*
+  - `-type x` *d directory, f file*
+  - `-maxdepth N` *limit the search to N levels of depth*
+  - `-exec` *exec a command on the file: `-exec grep -l "testo_da_cercare" {} +`*
+    - `+` Esegue il comando su tutti i file trovati in una sola volta, è più efficiente
+    - `\` Esegue il comando specificato per ogni file trovato singolarmente
+  - `-user username` 
+  - `-group groupname` 
+  - ``
+  - ``
 - **`grep`**
   - `grep picoCTF{ * -r` search *picoCTF* in every file in every directory
-  - `file ./-file0* | grep ASCII` *search every file that is a particular tipe*
+  - `file ./-file0* | grep ASCII` *search every file that is a particular type, but use: `find . -type f -exec file {} + | grep ASCII`*
+- **`uniq`**
+  - `-c` *filter out repeated lines in a sorted file and count the occurrences of each line*
+- **`wc`** print newline, word, and byte counts for each file
+  - `-l` line count
+- **`xars`** `[options] [command]` take the output of a command and pass its as arguments to another command
 - **ZIPS** [Zipception](https://training.olicyber.it/challenges#challenge-9)
 
   Unzip 3000 times a file:
@@ -19,3 +40,5 @@
   done
   
   ```
+## Random command
+- `` **
