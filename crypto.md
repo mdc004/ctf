@@ -8,7 +8,7 @@ Il principale strumento da utilizzare in questo tipo di challenge è Python!!!!!
 Bitwise significa operazioni a livello di bit
 
 - [dcode](https://www.dcode.fr/en): sito che continene una valanga di cifrari e diverse soluzioni per decodificare per partial key, partial plaintext...
-- **Cifrario di cesare**: comando `caesar`, scaricabile con `sudo apt install bsdgames`
+- **Cifrario di cesare**: comando `caesar`, scaricabile con `sudo apt install bsdgames` or `tr` for example: `tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt` for a 13 key
 - `ord(char)` tipicamente usato per il cifrario di cesare o in generale quando devi traslare le cifre
 - moduli ecc. guardare taccuino mate del discreto
 - [RSA](#RSA):
