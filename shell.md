@@ -22,7 +22,7 @@
   - `-c` *filter out repeated lines in a sorted file and count the occurrences of each line*
 - **`wc`** print newline, word, and byte counts for each file
   - `-l` line count
-- **`xars`** `[options] [command]` take the output of a command and pass its as arguments to another command
+- **`xargs`** `[options] [command]` take the output of a command and pass its as arguments to another command
 - **ZIPS** [Zipception](https://training.olicyber.it/challenges#challenge-9)
 
   Unzip 3000 times a file:
@@ -41,4 +41,10 @@
   
   ```
 ## Random command
+- `find . -type f -exec file {} + | grep ASCII | cut -d: -f1 | tr -d ' ' | xargs cat ` *trova i file che contengono ASCII text e li stampa. In mezzo toglie gli spazi iniziali e le parti che non sono file name*
+- `find . -type f -size 1033c -exec cat {} + | tr -d ' '` *filter files with a 1033 bytes size and print their content*
+- `find / -user bandit7 -group bandit6 -size 33c 2> /dev/null -exec cat {} +` *search in ehole the find systsem by user and gruop and delete the errors*
+- `cat data.txt | sort | uniq -u` *stampa solo le righe che si ripetono una volta*
+- `` **
+- `` **
 - `` **
