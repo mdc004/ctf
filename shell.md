@@ -45,6 +45,6 @@
 - `find . -type f -size 1033c -exec cat {} + | tr -d ' '` *filter files with a 1033 bytes size and print their content*
 - `find / -user bandit7 -group bandit6 -size 33c 2> /dev/null -exec cat {} +` *search in ehole the find systsem by user and gruop and delete the errors*
 - `cat data.txt | sort | uniq -u` *stampa solo le righe che si ripetono una volta*
-- `` **
+- `tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt` *caesar cypher or a simply rotation or translation, in this case the key is 13*
 - `` **
 - `` **
